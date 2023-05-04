@@ -3,9 +3,7 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Materiau_primaire=sequelize.define("Materiau_primaire",
     {  
-        fournisseur_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+        
         nom_materiel:{
             type :DataTypes.STRING,
             allowNull:false},

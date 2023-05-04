@@ -3,9 +3,7 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Ouvrier=sequelize.define("Ouvrier",
     {  
-        camion_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+       
         poste:{
             type :DataTypes.STRING,
             allowNull:false},
@@ -44,12 +42,7 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    Ouvrier.associate=models=>{
-        Ouvrier.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
+
     Ouvrier.associate=models=>{
         Ouvrier.hasOne(models.Camion,{
              onDelete:"cascade"

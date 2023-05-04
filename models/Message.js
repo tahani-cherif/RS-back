@@ -6,9 +6,7 @@ module.exports=(sequelize,DataTypes)=>{
         user_id:{
             type :DataTypes.INTEGER,
             allowNull:false},
-            conversation_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+            
             body:{
             type :DataTypes.STRING,
         allowNull:false},

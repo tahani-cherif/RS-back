@@ -1,11 +1,9 @@
 const { sequelize } = require("sequelize");
 
 module.exports=(sequelize,DataTypes)=>{
-    const Responsable_commercial=sequelize.define("Responsable_commercial",
+    const Responsable_etablissement=sequelize.define("Responsable_etablissement",
     {  
-        etablissement_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+       
             nom:{
             type :DataTypes.STRING,
             allowNull:false},
@@ -41,13 +39,13 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    Responsable_commercial.associate=models=>{
-        Responsable_commercial.belongsTo(models.Etablissement,{
+    Responsable_etablissement.associate=models=>{
+        Responsable_etablissement.belongsTo(models.Etablissement,{
              onDelete:"cascade"
         })
         
     };
    
 
-    return Responsable_commercial;
+    return Responsable_etablissement;
 }

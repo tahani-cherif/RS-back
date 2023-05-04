@@ -33,13 +33,13 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Reparation_camion.associate=models=>{
-        Reparation_camion.belongsTo(models.Reparation_poubelle,{
+        Reparation_camion.belongsTo(models.Mecanicien,{
              onDelete:"cascade"
         })
         
     };
     Reparation_camion.associate=models=>{
-        Reparation_camion.hasOne(models.Camion,{
+        Reparation_camion.belongsTo(models.Camion,{
              onDelete:"cascade"
         });
     };

@@ -38,17 +38,7 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    Responsable_commercial.associate=models=>{
-        Responsable_commercial.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
-    Responsable_commercial.associate=models=>{
-        Responsable_commercial.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
-    };
+    
 
     return Responsable_commercial;
 }

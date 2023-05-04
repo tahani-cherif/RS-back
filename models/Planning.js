@@ -3,9 +3,7 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Planning=sequelize.define("Planning",
     {  
-        etablissement_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+        
         jour:{
             type :DataTypes.DATE,
             allowNull:false},

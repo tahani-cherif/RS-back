@@ -3,9 +3,6 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Etage_etablissement=sequelize.define("Etage_etablissement",
     {  
-        bloc_etablissement_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
             nom_etage_etablissement:{
             type :DataTypes.STRING,
             allowNull:false},

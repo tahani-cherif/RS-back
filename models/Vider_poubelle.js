@@ -2,13 +2,8 @@ const { sequelize } = require("sequelize");
 
 module.exports=(sequelize,DataTypes)=>{
     const Vider_poubelle=sequelize.define("Vider_poubelle",
-    {  
-        poubelle_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
-            camion_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+    { 
+            
             date_depot:{
             type :DataTypes.DATE,
         allowNull:false},
@@ -35,7 +30,18 @@ module.exports=(sequelize,DataTypes)=>{
     
 
     );
-    
+    Vider_poubelle.associate=models=>{
+        Vider_poubelle.belongsTo(models.Poubelle,{
+             onDelete:"cascade"
+        })
+        
+    };
+    Vider_poubelle.associate=models=>{
+        Vider_poubelle.belongsTo(models.Camion,{
+             onDelete:"cascade"
+        })
+        
+    };
 
     return Vider_poubelle;
 }

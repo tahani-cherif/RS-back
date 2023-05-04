@@ -3,9 +3,7 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Zone_depot=sequelize.define("Zone_depot",
     {  
-        zone_travail_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+       
         adresse:{
             type :DataTypes.STRING,
             allowNull:false},

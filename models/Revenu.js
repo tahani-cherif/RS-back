@@ -4,9 +4,7 @@ module.exports=(sequelize,DataTypes)=>{
     const Revenu=sequelize.define("Revenu",
     {  
        
-        etablissement_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+        
             mois:{
             type :DataTypes.DATE,
             allowNull:false},

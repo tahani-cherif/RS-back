@@ -31,13 +31,9 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
  
+    
     Reparateur_poubelle.associate=models=>{
-        Reparateur_poubelle.belongsTo(models.Reparation_poubelle,{
-             onDelete:"cascade"
-        });
-    };
-    Reparateur_poubelle.associate=models=>{
-        Reparateur_poubelle.hasOne(models.Poubelle,{
+        Reparateur_poubelle.belongsTo(models.Poubelle,{
              onDelete:"cascade"
         });
     };
