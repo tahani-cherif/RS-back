@@ -6,6 +6,7 @@ const db = require('./models')
 const app = express()
 
 
+
 // middleware
 dotenv.config({path:'config.env'})
 app.use(express.json())
@@ -21,8 +22,10 @@ app.use(express.urlencoded({ extended: true }))
 // routers
 
 const etablissementRoutes = require('./routes/etablissementRoutes')
+const zonetravailRoutes = require('./routes/zone-travailRoutes')
 const ApiError = require('./apiError')
 app.use('/api/etablissement', etablissementRoutes)
+app.use('/api/zonetravail', zonetravailRoutes)
 
 //static Images Folder
 
