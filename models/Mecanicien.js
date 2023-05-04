@@ -4,31 +4,31 @@ module.exports=(sequelize,DataTypes)=>{
     const Mecanicien=sequelize.define("Mecanicien",
     {  
         nom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         prenom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         CIN:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         photo:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:true},
         adresse:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:true},
         numero_telephone:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         email:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         mot_de_passe:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         QRcode:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
        
         
@@ -38,14 +38,9 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
+   
     Mecanicien.associate=models=>{
-        Mecanicien.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
-    Mecanicien.associate=models=>{
-        Mecanicien.hasMany(models.Poubelle,{
+        Mecanicien.hasMany(models.Reparation_camion,{
              onDelete:"cascade"
         });
     };

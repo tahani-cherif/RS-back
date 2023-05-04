@@ -4,13 +4,13 @@ module.exports=(sequelize,DataTypes)=>{
     const Poubelle=sequelize.define("Poubelle",
     {
         nom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         QRcode:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         type:{
-                type :DataTypes.VARCHAR(255),
+                type :DataTypes.STRING,
                 allowNull:false},
     
 
@@ -23,7 +23,7 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     Poubelle.associate=models=>{
-        Poubelle.belongsTo(models.Bloc_etablissement,{
+        Poubelle.belongsTo(models.Bloc_poubelle,{
              onDelete:"cascade"
         })
         

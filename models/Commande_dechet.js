@@ -3,12 +3,8 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Commande_dechet=sequelize.define("Commande_dechet",
     {  
-        client_dechet_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
-        QRcode:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
+        
+       
         quantite_plastique:{
             type :DataTypes.DOUBLE,
         allowNull:false},
@@ -37,31 +33,28 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.DOUBLE,
         allowNull:true},
         type_paiment:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true},
         montant_total:{
             type :DataTypes.DOUBLE,
         allowNull:true},
         date_commande:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
         allowNull:true},
         date_livraison:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
         allowNull:true}
-   
+   , QRcode:{
+    type :DataTypes.INTEGER,
+    allowNull:false},
     }
     
 
     );
     
+    
     Commande_dechet.associate=models=>{
-        Commande_dechet.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
-    Commande_dechet.associate=models=>{
-        Commande_dechet.hasMany(models.Poubelle,{
+        Commande_dechet.hasOne(models.Client_dechets,{
              onDelete:"cascade"
         });
     };

@@ -7,25 +7,25 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.INTEGER,
             allowNull:false},
         jour:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
             allowNull:false},
         start:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
         allowNull:false},
         end:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
             allowNull:false},
         validation:{
             type :DataTypes.DOUBLE,
             allowNull:false},
         statut:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         date_collecte:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
             allowNull:false},
         type_poubelle:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         id_ouvrier:{
             type :DataTypes.INTEGER,
@@ -43,11 +43,7 @@ module.exports=(sequelize,DataTypes)=>{
         })
         
     };
-    Planning.associate=models=>{
-        Planning.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
-    };
+    
 
     return Planning;
 }

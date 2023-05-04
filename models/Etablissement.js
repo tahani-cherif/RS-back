@@ -3,40 +3,34 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const Etablissement=sequelize.define("Etablissement",
     {  
-        zone_travail_id:{
-            type :DataTypes.INTEGER,
-            allowNull:false},
-
+      
             gouvernorat:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
 
             delegation:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         localite:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         code_postal:{
             type :DataTypes.INTEGER,
         allowNull:false},
 
-        camion_id:{
-            type :DataTypes.INTEGER,
-        allowNull:false},
 
         nom_etablissement:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         niveau_etablissement:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         type_etablissement:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         nbr_personnes:{
@@ -44,11 +38,11 @@ module.exports=(sequelize,DataTypes)=>{
         allowNull:true},
 
         url_map:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         adresse:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
 
         longitude:{
@@ -96,13 +90,29 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Etablissement.associate=models=>{
-        Etablissement.belongsTo(models.Etablissement,{
+        Etablissement.belongsTo(models.Zone_travail,{
              onDelete:"cascade"
         })
         
     };
     Etablissement.associate=models=>{
-        Etablissement.hasMany(models.Poubelle,{
+        Etablissement.belongsTo(models.Camion,{
+             onDelete:"cascade"
+        })
+        
+    };
+    Etablissement.associate=models=>{
+        Etablissement.hasOne(models.Responsable_etablissement,{
+             onDelete:"cascade"
+        });
+    };
+    Etablissement.associate=models=>{
+        Etablissement.hasOne(models.Revenu,{
+             onDelete:"cascade"
+        });
+    };
+    Etablissement.associate=models=>{
+        Etablissement.hasMany(models.Bloc_etablissement,{
              onDelete:"cascade"
         });
     };

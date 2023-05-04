@@ -5,7 +5,7 @@ module.exports=(sequelize,DataTypes)=>{
     {  
        
         nom_bloc_poubelle:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
    
     }
@@ -14,7 +14,7 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Bloc_poubelle.associate=models=>{
-        Bloc_poubelle.belongsTo(models.Etablissement,{
+        Bloc_poubelle.belongsTo(models.Etage_etablissement,{
              onDelete:"cascade"
         })
         

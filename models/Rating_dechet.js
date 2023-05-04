@@ -1,32 +1,31 @@
 const { sequelize } = require("sequelize");
 
 module.exports=(sequelize,DataTypes)=>{
-    const Message=sequelize.define("Message",
+    const Rating_dechet=sequelize.define("Rating_dechet",
     {  
-        user_id:{
+        client_dechet_id:{
             type :DataTypes.INTEGER,
             allowNull:false},
-            conversation_id:{
+            dechet_id:{
             type :DataTypes.INTEGER,
             allowNull:false},
-            body:{
-            type :DataTypes.STRING,
+            rating:{
+            type :DataTypes.DOUBLE,
         allowNull:false},
-        read:{
-            type :DataTypes.STRING,
-        allowNull:false},
+       
+   
     }
     
 
     );
     
-    Message.associate=models=>{
-        Message.belongsTo(models.Conversation,{
+    Rating_dechet.associate=models=>{
+        Rating_dechet.belongsTo(models.Dechet,{
              onDelete:"cascade"
         })
         
     };
- 
+   
 
-    return Message;
+    return Rating_dechet;
 }

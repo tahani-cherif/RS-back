@@ -4,25 +4,25 @@ module.exports=(sequelize,DataTypes)=>{
     const Fournisseur=sequelize.define("Fournisseur",
     {  
         nom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
             prenom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
             CIN:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         photo:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true},
         numero_telephone:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         email:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         adresse:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
    
     }
@@ -31,16 +31,12 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Fournisseur.associate=models=>{
-        Fournisseur.belongsTo(models.Etablissement,{
+        Fournisseur.hasMany(models.Materiau_primaire,{
              onDelete:"cascade"
         })
         
     };
-    Fournisseur.associate=models=>{
-        Fournisseur.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
-    };
+  
 
     return Fournisseur;
 }

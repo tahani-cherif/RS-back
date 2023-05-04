@@ -10,10 +10,10 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.INTEGER,
         allowNull:false},
         auth_user:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         auth_second_user:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false}
       
    
@@ -23,13 +23,7 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Conversation.associate=models=>{
-        Conversation.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
-    Conversation.associate=models=>{
-        Conversation.hasMany(models.Poubelle,{
+        Conversation.hasMany(models.Message,{
              onDelete:"cascade"
         });
     };

@@ -7,7 +7,7 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.INTEGER,
             allowNull:false},
         nom_materiel:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         prix_unitaire:{
             type :DataTypes.DOUBLE,
@@ -25,15 +25,10 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Materiau_primaire.associate=models=>{
-        Materiau_primaire.belongsTo(models.Etablissement,{
+        Materiau_primaire.belongsTo(models.Fournisseur,{
              onDelete:"cascade"
         })
         
-    };
-    Materiau_primaire.associate=models=>{
-        Materiau_primaire.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
     };
 
     return Materiau_primaire;

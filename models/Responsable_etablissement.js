@@ -1,15 +1,12 @@
 const { sequelize } = require("sequelize");
 
 module.exports=(sequelize,DataTypes)=>{
-    const Ouvrier=sequelize.define("Ouvrier",
+    const Responsable_commercial=sequelize.define("Responsable_commercial",
     {  
-        camion_id:{
+        etablissement_id:{
             type :DataTypes.INTEGER,
             allowNull:false},
-        poste:{
-            type :DataTypes.STRING,
-            allowNull:false},
-        nom:{
+            nom:{
             type :DataTypes.STRING,
             allowNull:false},
         prenom:{
@@ -44,17 +41,13 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    Ouvrier.associate=models=>{
-        Ouvrier.belongsTo(models.Etablissement,{
+    Responsable_commercial.associate=models=>{
+        Responsable_commercial.belongsTo(models.Etablissement,{
              onDelete:"cascade"
         })
         
     };
-    Ouvrier.associate=models=>{
-        Ouvrier.hasOne(models.Camion,{
-             onDelete:"cascade"
-        });
-    };
+   
 
-    return Ouvrier;
+    return Responsable_commercial;
 }

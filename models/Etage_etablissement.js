@@ -7,7 +7,7 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.INTEGER,
             allowNull:false},
             nom_etage_etablissement:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         
    
@@ -17,13 +17,13 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Etage_etablissement.associate=models=>{
-        Etage_etablissement.belongsTo(models.Etablissement,{
+        Etage_etablissement.belongsTo(models.Bloc_etablissement,{
              onDelete:"cascade"
         })
         
     };
     Etage_etablissement.associate=models=>{
-        Etage_etablissement.hasMany(models.Poubelle,{
+        Etage_etablissement.hasMany(models.Bloc_poubelle,{
              onDelete:"cascade"
         });
     };

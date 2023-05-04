@@ -19,15 +19,10 @@ app.use(express.urlencoded({ extended: true }))
 
 
 // routers
-const userRoutes = require('./routes/userRoutes')
-const stockRoutes = require('./routes/stockRoutes')
+
 const etablissementRoutes = require('./routes/etablissementRoutes')
-const blocEtablissmentRoutes = require('./routes/blocEtablissmentRoutes')
 const ApiError = require('./apiError')
-app.use('/api/user', userRoutes)
-app.use('/api/stock', stockRoutes)
 app.use('/api/etablissement', etablissementRoutes)
-app.use('/api/blocEtablissment',blocEtablissmentRoutes )
 
 //static Images Folder
 

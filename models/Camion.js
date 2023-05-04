@@ -4,13 +4,13 @@ module.exports=(sequelize,DataTypes)=>{
     const Camion=sequelize.define("Camion",
     {  
         matricule:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         heure_sortie:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
         allowNull:true},
         heure_entree:{
-            type :DataTypes.DATETIME,
+            type :DataTypes.DATE,
         allowNull:true},
         longitude:{
             type :DataTypes.DOUBLE,
@@ -40,13 +40,30 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Camion.associate=models=>{
-        Camion.belongsTo(models.Etablissement,{
+        Camion.belongsTo(models.Zone_travail,{
              onDelete:"cascade"
         })
         
     };
     Camion.associate=models=>{
-        Camion.hasMany(models.Poubelle,{
+        Camion.belongsTo(models.Ouvrier,{
+             onDelete:"cascade"
+        })
+        
+    };
+    Camion.associate=models=>{
+        Camion.belongsTo(models.Zone_depot,{
+             onDelete:"cascade"
+        })
+        
+    };
+    Camion.associate=models=>{
+        Camion.hasMany(models.Etablissement,{
+             onDelete:"cascade"
+        });
+    };
+    Camion.associate=models=>{
+        Camion.hasMany(models.Depot,{
              onDelete:"cascade"
         });
     };

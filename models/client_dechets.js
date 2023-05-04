@@ -4,34 +4,34 @@ module.exports=(sequelize,DataTypes)=>{
     const Client_dechets=sequelize.define("Client_dechets",
     {  
         nom_entreprise:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         matricule_fiscale:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         nom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         prenom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true},
         numero_fixe:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true},
         adresse:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true},
         numero_telephone:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         mot_de_passe:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         email:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         QRcode:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:true}
    
     }
@@ -40,16 +40,12 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     Client_dechets.associate=models=>{
-        Client_dechets.belongsTo(models.Etablissement,{
+        Client_dechets.belongsTo(models.Commande_dechet,{
              onDelete:"cascade"
         })
         
     };
-    Client_dechets.associate=models=>{
-        Client_dechets.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
-    };
+   
 
     return Client_dechets;
 }

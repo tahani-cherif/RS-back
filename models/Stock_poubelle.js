@@ -1,19 +1,19 @@
 const { sequelize } = require("sequelize");
 
 module.exports=(sequelize,DataTypes)=>{
-    const Dechet=sequelize.define("Dechet",
+    const Stock_poubelle=sequelize.define("Stock_poubelle",
     {  
-        type_dechet:{
+        type_poubelle:{
             type :DataTypes.STRING,
             allowNull:false},
-        prix_unitaire:{
+            quantite_disponible:{
             type :DataTypes.DOUBLE,
         allowNull:false},
-        photo:{
+        description:{
             type :DataTypes.STRING,
         allowNull:true},
-        pourcentage_remise:{
-            type :DataTypes.DOUBLE,
+        photo:{
+            type :DataTypes.STRING,
         allowNull:false}
       
    
@@ -22,17 +22,17 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    
-    Dechet.associate=models=>{
-        Dechet.hasMany(models.Depot,{
+    Stock_poubelle.associate=models=>{
+        Stock_poubelle.belongsTo(models.Bloc_poubelle,{
              onDelete:"cascade"
-        });
+        })
+        
     };
-    Dechet.associate=models=>{
-        Dechet.hasOne(models.Rating_dechet,{
+    Stock_poubelle.associate=models=>{
+        Stock_poubelle.hasOne(models.Rating_poubelle,{
              onDelete:"cascade"
         });
     };
 
-    return Dechet;
+    return Stock_poubelle;
 }

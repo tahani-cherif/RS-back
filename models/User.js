@@ -3,34 +3,23 @@ const { sequelize } = require("sequelize");
 module.exports=(sequelize,DataTypes)=>{
     const User=sequelize.define("User",
     {
-        username:{
-            type :DataTypes.VARCHAR(255),
+        name:{
+            type :DataTypes.STRING,
         allowNull:false},
     
 
         email:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
     
     
         password:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false}
         }
     
 
     );
-    User.associate=models=>{
-        User.hasMany(models.Product,{
-             onDelete:"cascade"
-        })
-        
-    };
-    User.associate=models=>{
-        User.hasOne(models.Profil,{
-             onDelete:"cascade"
-        })
-        
-    };
+
     return User;
 }

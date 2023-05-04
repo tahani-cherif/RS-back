@@ -4,19 +4,19 @@ module.exports=(sequelize,DataTypes)=>{
     const Contact=sequelize.define("Contact",
     {  
         nom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
             allowNull:false},
         prenom:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         email:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         numero_telephone:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
         message:{
-            type :DataTypes.VARCHAR(255),
+            type :DataTypes.STRING,
         allowNull:false},
    
     }
@@ -24,17 +24,6 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
-    Contact.associate=models=>{
-        Contact.belongsTo(models.Etablissement,{
-             onDelete:"cascade"
-        })
-        
-    };
-    Contact.associate=models=>{
-        Contact.hasMany(models.Poubelle,{
-             onDelete:"cascade"
-        });
-    };
 
     return Contact;
 }
