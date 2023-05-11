@@ -17,7 +17,7 @@ exports.getZone_travailValidator=[
 
 exports.createZone_travailValidator=[
     check('region').notEmpty().withMessage('region required'),
-    check('code_postal').notEmpty().withMessage('code_postal required'),
+    check('code_postal').notEmpty().withMessage('code_postal required').isArray().withMessage('code_postal must be array'),
     check('quantite_total_collecte_plastique').notEmpty().withMessage('quantite_total_collecte_plastique required')
                                               .isNumeric().withMessage('quantite_total_collecte_plastique must be ndouble'),
     check('quantite_total_collecte_composte').notEmpty().withMessage('quantite_total_collecte_composte required')

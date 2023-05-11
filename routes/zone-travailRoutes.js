@@ -1,4 +1,6 @@
 const express=require('express')
+const authService = require('../services/authService');
+
 const {getZone_travailValidator,
       createZone_travailValidator,
       updateZone_travailValidator,
@@ -16,7 +18,7 @@ const {getZonetravail,
 const router=express.Router();
 
 router.route('/').get(getZonetravails)
-                 .post(createZone_travailValidator,createZonetravail);
+                 .post(authService.protect,createZone_travailValidator,createZonetravail);
 
 router.route('/:id').get(getZone_travailValidator,getZonetravail)
                     .put(updateZone_travailValidator,updateZonetravail)

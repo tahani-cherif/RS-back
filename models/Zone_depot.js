@@ -33,7 +33,10 @@ module.exports=(sequelize,DataTypes)=>{
     
 
     );
-    
+    Zone_depot.associate=models=>{
+        Zone_depot.belongsTo(models.Zone_travail,{
+           
+        })};
     Zone_depot.associate=models=>{
         Zone_depot.belongsTo(models.Camion,{
              onDelete:"cascade"

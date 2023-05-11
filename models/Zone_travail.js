@@ -7,8 +7,14 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.STRING,
             allowNull:false},
         code_postal:{
-            type :DataTypes.STRING,
-            allowNull:false},
+            type: DataTypes.STRING,
+        allowNull: false,
+        get() {
+            return this.getDataValue('code_postal').split(';')
+        },
+        set(val) {
+           this.setDataValue('code_postal',val.join(';'));
+        },},
             quantite_total_collecte_plastique:{
             type :DataTypes.DOUBLE,
         allowNull:false},
@@ -26,16 +32,25 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     
+   
+    Zone_travail.associate=models=>{
+        Zone_travail.hasMany(models.Camion,{
+             onDelete:"cascade"
+        });
+    };
     Zone_travail.associate=models=>{
         Zone_travail.hasMany(models.Etablissement,{
+          
              onDelete:"cascade"
         })
         
     };
     Zone_travail.associate=models=>{
-        Zone_travail.hasMany(models.Camion,{
-             onDelete:"cascade"
-        });
+        Zone_travail.hasMany(models.Zone_depot,{
+          
+             
+        })
+        
     };
 
     return Zone_travail;
