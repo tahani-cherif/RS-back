@@ -5,21 +5,16 @@ module.exports=(sequelize,DataTypes)=>{
     {  
         type_dechet:{
             type :DataTypes.STRING,
-            allowNull:false},
+            allowNull:false,
+            unique: true},
         prix_unitaire:{
             type :DataTypes.DOUBLE,
         allowNull:false},
-        photo:{
-            type :DataTypes.STRING,
-        allowNull:true},
-        pourcentage_remise:{
+        
+        prixApresPromotion:{
             type :DataTypes.DOUBLE,
         allowNull:false}
-      
-   
     }
-    
-
     );
     
     

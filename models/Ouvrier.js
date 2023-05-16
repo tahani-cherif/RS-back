@@ -44,7 +44,7 @@ module.exports=(sequelize,DataTypes)=>{
     
 
     Ouvrier.associate=models=>{
-        Ouvrier.hasOne(models.Camion,{
+        Ouvrier.belongsTo(models.Camion,{
              onDelete:"cascade"
         });
     };

@@ -34,6 +34,8 @@ const stock_poubelleRoutes = require('./routes/stock_poubelleRoutes')
 const ZoneDepotRoutes = require('./routes/ZoneDepotRoutes')
 const userRoute = require('./routes/userRoute')
 const authRoute = require('./routes/authRoute')
+const dechetRoute = require('./routes/DechetRoute')
+const camionRoute = require('./routes/camionRoute')
 app.use('/api/userImages', express.static('./uploads/users'))
 
 app.use('/api/etablissement', etablissementRoutes)
@@ -43,6 +45,8 @@ app.use('/api/stockpoubelle', stock_poubelleRoutes)
 app.use('/api/zonedepot', ZoneDepotRoutes)
 app.use('/api/user', userRoute)
 app.use('/api/auth', authRoute)
+app.use('/api/dechet', dechetRoute)
+app.use('/api/camion', camionRoute)
 
 
 

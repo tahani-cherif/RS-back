@@ -1,5 +1,4 @@
 const { sequelize } = require("sequelize");
-
 module.exports=(sequelize,DataTypes)=>{
     const Zone_travail=sequelize.define("Zone_travail",
     {  
@@ -35,7 +34,7 @@ module.exports=(sequelize,DataTypes)=>{
    
     Zone_travail.associate=models=>{
         Zone_travail.hasMany(models.Camion,{
-             onDelete:"cascade"
+           
         });
     };
     Zone_travail.associate=models=>{

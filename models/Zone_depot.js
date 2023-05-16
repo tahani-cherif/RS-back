@@ -38,7 +38,7 @@ module.exports=(sequelize,DataTypes)=>{
            
         })};
     Zone_depot.associate=models=>{
-        Zone_depot.belongsTo(models.Camion,{
+        Zone_depot.hasMany(models.Camion,{
              onDelete:"cascade"
         })
         

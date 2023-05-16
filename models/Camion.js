@@ -1,5 +1,4 @@
 const { sequelize } = require("sequelize");
-
 module.exports=(sequelize,DataTypes)=>{
     const Camion=sequelize.define("Camion",
     {  
@@ -32,31 +31,40 @@ module.exports=(sequelize,DataTypes)=>{
         allowNull:false},
         volume_actuelle_canette:{
             type :DataTypes.DOUBLE,
-        allowNull:false}
+        allowNull:false},
    
-    }
+        },
+        
+   
+   
+    
     
 
     );
     
+   
     Camion.associate=models=>{
         Camion.belongsTo(models.Zone_travail,{
-             onDelete:"cascade"
+            foreignKey:"ZoneTravailId",
+            allowNull: false
         })
         
     };
-    Camion.associate=models=>{
-        Camion.belongsTo(models.Ouvrier,{
-             onDelete:"cascade"
-        })
         
-    };
+    
     Camion.associate=models=>{
         Camion.belongsTo(models.Zone_depot,{
              onDelete:"cascade"
         })
         
     };
+    Camion.associate=models=>{
+        Camion.hasOne(models.Ouvrier,{
+             onDelete:"cascade"
+        })
+        
+    };
+   
     Camion.associate=models=>{
         Camion.hasMany(models.Etablissement,{
              onDelete:"cascade"
