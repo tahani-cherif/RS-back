@@ -45,36 +45,46 @@ module.exports=(sequelize,DataTypes)=>{
    
     Camion.associate=models=>{
         Camion.belongsTo(models.Zone_travail,{
-            foreignKey:"ZoneTravailId",
-            allowNull: false
-        })
-        
+            foreignKey:"ZoneTravailId"
+        }),
+        Camion.belongsTo(models.Zone_depot,{
+            foreignKey:"ZoneDepotId"
+        }),
+        Camion.hasMany(models.Etablissement,{
+            onDelete:"cascade"
+       }),
+       Camion.hasOne(models.Ouvrier,{
+        onDelete:"cascade"
+        }),
+        Camion.hasMany(models.Depot,{
+            onDelete:"cascade"
+            })
     };
         
     
-    Camion.associate=models=>{
-        Camion.belongsTo(models.Zone_depot,{
-             onDelete:"cascade"
-        })
+    // Camion.associate=models=>{
+        // Camion.belongsTo(models.Zone_depot,{
+        //     foreignKey:"ZoneTravailId"
+        // })
         
-    };
-    Camion.associate=models=>{
-        Camion.hasOne(models.Ouvrier,{
-             onDelete:"cascade"
-        })
+    // };
+    // Camion.associate=models=>{
+        // Camion.hasOne(models.Ouvrier,{
+        //      onDelete:"cascade"
+        // })
         
-    };
+    // };
    
-    Camion.associate=models=>{
-        Camion.hasMany(models.Etablissement,{
-             onDelete:"cascade"
-        });
-    };
-    Camion.associate=models=>{
-        Camion.hasMany(models.Depot,{
-             onDelete:"cascade"
-        });
-    };
+    // Camion.associate=models=>{
+        // Camion.hasMany(models.Etablissement,{
+        //      onDelete:"cascade"
+        // });
+    // };
+    // Camion.associate=models=>{
+        // Camion.hasMany(models.Depot,{
+        //      onDelete:"cascade"
+        // });
+    // };
 
     return Camion;
 }
