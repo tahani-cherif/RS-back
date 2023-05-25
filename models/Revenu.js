@@ -5,7 +5,7 @@ module.exports=(sequelize,DataTypes)=>{
     {  
        
         
-            mois:{
+            date:{
             type :DataTypes.DATE,
             allowNull:false},
             quantite_plastique_menusel:{

@@ -17,13 +17,12 @@ module.exports=(sequelize,DataTypes)=>{
         Bloc_etablissement.belongsTo(models.Etablissement,{
              onDelete:"cascade"
         })
+        Bloc_etablissement.hasMany(models.Etage_etablissement,{
+            onDelete:"cascade"
+       });
         
     };
-    Bloc_etablissement.associate=models=>{
-        Bloc_etablissement.hasMany(models.Etage_etablissement,{
-             onDelete:"cascade"
-        });
-    };
+  
 
     return Bloc_etablissement;
 }

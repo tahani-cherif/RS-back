@@ -32,21 +32,42 @@ module.exports=(sequelize,DataTypes)=>{
         role:{
                 type :DataTypes.STRING,
                 allowNull:true
+            },
+            qrCode:{
+                type :DataTypes.STRING,
+                allowNull:true
             }
-        },  { 
+        },
+        
+        { 
             sequelize, 
             modelName: 'User',
             hooks: {
               beforeCreate: async (user, options) => {
                 const hashedPassword = await bcrypt.hash(user.password, 12);
                 user.password = hashedPassword;
-              }
+
+              },
+              
+             
+              
             }
     },
         
     
 
     );
+    User.associate=models=>{
+        User.belongsTo(models.Camion,{
+            allowNull:true
+        })
+        User.belongsTo(models.Etablissement,{
+            allowNull:true
+        })
+      
+       
+        
+    };
     
     return User;
 }

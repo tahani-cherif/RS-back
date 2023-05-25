@@ -94,6 +94,12 @@ exports.changeUserPassword = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.deleteUser=asyncHandler(async(req,res,next)=>{
    const {id}=req.params;
-    const deletes=await User.destroy({where:{id:id}})
-  res.status(200).json({ message: "user deleted" });  
+   const user = await User.findByPk(id);
+   
+    if(!user){
+      return next(new ApiError(`No User for this id ${id}`,404));    }else{
+       await User.destroy({where:{id:id}})
+        res.status(200).json({ message: "user deleted" });  
+      }
+  
 });

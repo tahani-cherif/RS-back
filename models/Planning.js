@@ -4,13 +4,13 @@ module.exports=(sequelize,DataTypes)=>{
     const Planning=sequelize.define("Planning",
     {  
         
-        jour:{
-            type :DataTypes.DATE,
+        Subject:{
+            type :DataTypes.STRING,
             allowNull:false},
-        start:{
+            StartTime:{
             type :DataTypes.DATE,
         allowNull:false},
-        end:{
+        EndTime:{
             type :DataTypes.DATE,
             allowNull:false},
         validation:{
@@ -19,17 +19,11 @@ module.exports=(sequelize,DataTypes)=>{
         statut:{
             type :DataTypes.STRING,
             allowNull:false},
-        date_collecte:{
-            type :DataTypes.DATE,
-            allowNull:false},
+      
         type_poubelle:{
             type :DataTypes.STRING,
             allowNull:false},
-        id_ouvrier:{
-            type :DataTypes.INTEGER,
-        allowNull:false},
         
-   
     }
     
 
@@ -39,6 +33,9 @@ module.exports=(sequelize,DataTypes)=>{
         Planning.belongsTo(models.Etablissement,{
              onDelete:"cascade"
         })
+        Planning.belongsTo(models.Camion,{
+            onDelete:"cascade"
+       })
         
     };
     

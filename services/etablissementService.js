@@ -1,130 +1,62 @@
-const db = require('../models')
-
-// image Upload
-const multer = require('multer')
-const path = require('path')
+const Etablissement = require("../models").Etablissement;
+const asyncHandler = require('express-async-handler')
+const ApiError=require('../utils/apiError')
 
 
-// create main Model
-const Etablissement = db.Etablissement
+// @desc    Get all etablissement
+// @route   GET api/zonetravail/
+// @access  Private
+exports.getEtablissements=asyncHandler(async(req,res) => {
+    const etablissement = await Etablissement.findAll();
+    res.status(200).json({results:etablissement.length,data:etablissement})
+  });
 
-// main work
-
-// 1. create Etablissement
-
-const addEtablissement = async (req, res) => {
-
-    let info = {
-        nom_etablissment: req.body.nom_etablissment,
-        type_etablissement: req.body.type_etablissement,
-       
-    }
-
-    const Etablissements = await Etablissement.create(info)
-    res.status(200).send(Etablissements)
-    console.log(Etablissements)
-
+// @desc    Get specific Etablissement by id
+// @route   GET api/zonetravail/:id
+// @access  Private
+exports.getEtablissement = asyncHandler(async(req,res,next)=>{
+  const {id}=req.params; 
+  const etablissement = await Etablissement.findOne({where:{id:id}});
+  if(!etablissement)
+  {
+    return   next(new ApiError(`Etablissement not found for this id ${id}`,404)); 
 }
-
-
-
-// 2. get all Etablissements
-
-const getAllEtablissements = async (req, res) => {
-
-    let Etablissements = await Etablissement.findAll({})
-    res.status(200).send(Etablissements)
-
-}
-
-// 3. get single Etablissement
-
-const getOneEtablissement = async (req, res) => {
-
-    let id = req.params.id
-    let Etablissements = await Etablissement.findOne({ where: { id: id }})
-    res.status(200).send(Etablissements)
-
-}
-
-// 4. update Etablissement
-
-const updateEtablissement = async (req, res) => {
-
-    let id = req.params.id
-
-    const Etablissements = await Etablissement.update(req.body, { where: { id: id }})
-
-    res.status(200).send(Etablissements)
-   
-
-}
-
-// 5. delete Etablissement by id
-
-const deleteEtablissement = async (req, res) => {
-
-    let id = req.params.id
-    
-    await Etablissement.destroy({ where: { id: id }} )
-
-    res.status(200).send('Etablissement is deleted !')
-
-}
-
-// 6. get published Etablissement
-
-const getPublishedEtablissement = async (req, res) => {
-
-    const Etablissements =  await Etablissement.findAll({})
-
-    res.status(200).send(Etablissements)
-
-}
-
-// 7. connect one to many relation Etablissement and Reviews
-
-
-
-
-// 8. Upload Image Controller
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
+  res.status(200).json({data: etablissement});
 })
 
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: '1000000' },
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|gif/
-        const mimeType = fileTypes.test(file.mimetype)  
-        const extname = fileTypes.test(path.extname(file.originalname))
 
-        if(mimeType && extname) {
-            return cb(null, true)
-        }
-        cb('Give proper files formate to upload')
-    }
-}).single('image')
+// @desc    Create a new Etablissement
+// @route   POST api/zonetravail/
+// @access  Private
+exports.createEtablissement=asyncHandler(async(req,res)=>{
+    const body=req.body
+    const etablissement=await Etablissement.create(body)
+     res.status(201).json({data:etablissement})
+   
+});
+
+// @desc    update specified Etablissement
+// @route   PUT api/zonetravail/:id
+// @access  Private
+exports.updateEtablissement =asyncHandler(async(req,res,next)=>{
+  const {id}=req.params;
+  const etablissement = await Etablissement.findByPk(id);
+  if (!etablissement) {
+    return next(
+      new ApiError(`No etablissement for this id ${id}`, 404)
+    );
+  }
+    await Etablissement.update(req.body,{where:{id:id}})
+    const updatedEtablissement = await User.findByPk(id);  
+    res.status(200).json({data:updatedEtablissement});  
+})
 
 
-
-
-
-
-
-
-
-module.exports = {
-    addEtablissement,
-    getAllEtablissements,
-    getOneEtablissement,
-    updateEtablissement,
-    deleteEtablissement,
- }
+// @desc    delete specified etablissement
+// @route   DELETE api/zonetravail/:id
+// @access  Private
+exports.deleteEtablissement=asyncHandler(async(req,res,next)=>{
+   const {id}=req.params;
+    const deletes=await Etablissement.destroy({where:{id:id}})
+  res.status(204).send();  
+});

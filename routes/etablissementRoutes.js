@@ -1,10 +1,12 @@
 const  express = require('express')
 
-const { addEtablissement,deleteEtablissement,getAllEtablissements,getOneEtablissement,updateEtablissement } = require('../services/etablissementService');
-const { createEtablissementValidator } = require('../utils/validators/etablissementValidator');
+const { createEtablissement,deleteEtablissement,getEtablissement,getEtablissements,updateEtablissement } = require('../services/etablissementService');
+const { createEtablissementValidator,deleteEtablissementValidator,getEtablissementValidator,updateEtablissementValidator } = require('../utils/validators/etablissementValidator');
 
 const router = express.Router()
+const blocEtablissement =require('./blocEtablissementRoute');
 
-router.route('/').get(getAllEtablissements).post(createEtablissementValidator,addEtablissement)
-router.route('/:id').get(getOneEtablissement).put(updateEtablissement).delete(deleteEtablissement)
+router.use('/:EtablissementId/blocEtablissement',blocEtablissement);
+router.route('/').get(getEtablissements).post(createEtablissementValidator,createEtablissement)
+router.route('/:id').get(getEtablissementValidator,getEtablissement).put(updateEtablissementValidator,updateEtablissement).delete(deleteEtablissementValidator,deleteEtablissement)
 module.exports=router;

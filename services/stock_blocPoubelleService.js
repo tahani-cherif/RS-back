@@ -2,6 +2,7 @@ const Stock_blocPoubelle = require("../models").Stock_blocPoubelle;
 const Stock_poubelle = require("../models").Stock_poubelle;
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
+const cron = require('node-cron');
 
 
 // @desc    Get all stock_blocPoubelle
@@ -45,7 +46,10 @@ exports.createStock_blocPoubelle=asyncHandler(async(req,res)=>{
       reference:`${body.reference}-${i.toString().padStart(4, '0')}`,
       type_poubelle:typePoubelle[j],
       isAffect:false,
-      StockBlocPoubelleId:stock_blocPoubelle.id
+      StockBlocPoubelleId:stock_blocPoubelle.id,
+      etat:0,
+      capacite:1000.0,
+      quantite_actuel:0.0
 })
      j++;
     } 

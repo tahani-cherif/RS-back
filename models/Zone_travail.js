@@ -34,23 +34,21 @@ module.exports=(sequelize,DataTypes)=>{
    
     Zone_travail.associate=models=>{
         Zone_travail.hasMany(models.Camion,{
-           
-        });
-    };
-    Zone_travail.associate=models=>{
-        Zone_travail.hasMany(models.Etablissement,{
-          
-             onDelete:"cascade"
-        })
-        
-    };
-    Zone_travail.associate=models=>{
+              
+        }),
         Zone_travail.hasMany(models.Zone_depot,{
           
              
         })
+         Zone_travail.associate=models=>{
+        Zone_travail.hasMany(models.Etablissement,{
+          
+        })
         
     };
+    };
+   
+  
 
     return Zone_travail;
 }

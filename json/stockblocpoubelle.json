@@ -1,0 +1,144 @@
+[
+    {
+        "reference":"SBP01",
+        "isAffect":true,
+        "EtageEtablissementId":1
+       
+    },
+    {
+        "reference":"SBP02",
+        "isAffect":true,
+        "EtageEtablissementId":1
+       
+    },
+    {
+        "reference":"SBP03",
+        "isAffect":true,
+        "EtageEtablissementId":2
+       
+    } ,
+    {
+        "reference":"SBP04",
+        "isAffect":true,
+        "EtageEtablissementId":3
+       
+    } ,
+    {
+        "reference":"SBP05",
+        "isAffect":true,
+        "EtageEtablissementId":4
+       
+    } ,{
+        "reference":"SBP06",
+        "isAffect":true,
+        "EtageEtablissementId":5
+       
+    } ,
+    {
+        "reference":"SBP07",
+        "isAffect":true,
+        "EtageEtablissementId":6
+       
+    }, 
+    {
+        "reference":"SBP08",
+        "isAffect":true,
+        "EtageEtablissementId":6
+       
+    },
+    {
+        "reference":"SBP09",
+        "isAffect":true,
+        "EtageEtablissementId":7
+       
+    } ,
+    {
+        "reference":"SBP10",
+        "isAffect":true,
+        "EtageEtablissementId":7
+       
+    } ,{
+        "reference":"SBP11",
+        "isAffect":true,
+        "EtageEtablissementId":8
+       
+    } ,{
+        "reference":"SBP12",
+        "isAffect":true,
+        "EtageEtablissementId":8
+       
+    } ,{
+        "reference":"SBP13",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP14",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP15",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP16",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP17",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP18",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP19",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP20",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP21",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP22",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP23",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP24",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP25",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP26",
+        "isAffect":false
+       
+    } 
+    ,{
+        "reference":"SBP27",
+        "isAffect":false
+       
+    } ,{
+        "reference":"SBP28",
+        "isAffect":false
+       
+    }  ,{
+        "reference":"SBP29",
+        "isAffect":false
+       
+    }  ,{
+        "reference":"SBP30",
+        "isAffect":false
+       
+    }     
+]

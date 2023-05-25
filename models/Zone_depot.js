@@ -27,7 +27,7 @@ module.exports=(sequelize,DataTypes)=>{
         allowNull:false},
         quantite_depot_actuelle_canette:{
             type :DataTypes.DOUBLE,
-        allowNull:false}
+        allowNull:false},
    
     }
     
@@ -37,17 +37,17 @@ module.exports=(sequelize,DataTypes)=>{
         Zone_depot.belongsTo(models.Zone_travail,{
            
         })};
-    Zone_depot.associate=models=>{
-        Zone_depot.hasMany(models.Camion,{
-             onDelete:"cascade"
-        })
+    // Zone_depot.associate=models=>{
+    //     Zone_depot.hasMany(models.Camion,{
+    //          onDelete:"cascade"
+    //     })
         
-    };
-    Zone_depot.associate=models=>{
-        Zone_depot.hasMany(models.Depot,{
-             onDelete:"cascade"
-        });
-    };
+    // };
+    // Zone_depot.associate=models=>{
+    //     Zone_depot.hasMany(models.Depot,{
+    //          onDelete:"cascade"
+    //     });
+    // };
 
     return Zone_depot;
 }

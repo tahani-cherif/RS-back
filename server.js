@@ -36,6 +36,14 @@ const userRoute = require('./routes/userRoute')
 const authRoute = require('./routes/authRoute')
 const dechetRoute = require('./routes/DechetRoute')
 const camionRoute = require('./routes/camionRoute')
+const blocEtablissementRoute = require('./routes/blocEtablissementRoute')
+const etageEtablissementRoute = require('./routes/etageEtablissementRoute')
+const responsableEtablissementRoute = require('./routes/responsableEtablissementRoute')
+const ouvrierRoute = require('./routes/ouvrierRoute')
+const viderPoubelleRoute = require('./routes/viderPoubelleRoute')
+const planningRoute = require('./routes/planningRoute')
+
+
 app.use('/api/userImages', express.static('./uploads/users'))
 
 app.use('/api/etablissement', etablissementRoutes)
@@ -47,7 +55,12 @@ app.use('/api/user', userRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/dechet', dechetRoute)
 app.use('/api/camion', camionRoute)
-
+app.use('/api/blocetablissement', blocEtablissementRoute)
+app.use('/api/etage', etageEtablissementRoute)
+app.use('/api/responsable-etablissement', responsableEtablissementRoute)
+app.use('/api/ouvrier', ouvrierRoute)
+app.use('/api/viderpoubelle', viderPoubelleRoute)
+app.use('/api/planning', planningRoute)
 
 
 //static Images Folder

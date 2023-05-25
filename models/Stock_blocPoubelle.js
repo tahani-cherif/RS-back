@@ -20,6 +20,9 @@ module.exports=(sequelize,DataTypes)=>{
         Stock_blocPoubelle.hasMany(models.Stock_poubelle,{
              onDelete:"cascade"
         });
+        Stock_blocPoubelle.belongsTo(models.Etage_etablissement,{
+            allowNull: true
+       });
     };
 
     return Stock_blocPoubelle;

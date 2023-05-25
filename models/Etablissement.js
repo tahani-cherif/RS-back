@@ -83,9 +83,7 @@ module.exports=(sequelize,DataTypes)=>{
         quantite_canette_mensuel:{
             type :DataTypes.DOUBLE,
         allowNull:false},
-        // ZoneTravailId:{
-        //     type :DataTypes.DOUBLE,
-        // allowNull:false}
+       
    
     }
     
@@ -95,31 +93,27 @@ module.exports=(sequelize,DataTypes)=>{
     
    
     Etablissement.associate=models=>{
-        Etablissement.hasOne(models.Responsable_etablissement,{
-             onDelete:"cascade"
-        });
-    };
-    Etablissement.associate=models=>{
-        Etablissement.hasOne(models.Revenu,{
-             onDelete:"cascade"
-        });
-    };
-    Etablissement.associate=models=>{
-        Etablissement.hasMany(models.Bloc_etablissement,{
-             onDelete:"cascade"
-        });
-    };
-    Etablissement.associate=models=>{
-        Etablissement.belongsTo(models.Zone_travail,{
-           
-        })
+            Etablissement.belongsTo(models.Zone_travail,{
+               
+            })
+            
+            Etablissement.belongsTo(models.Camion,{
+            })
+            
+            Etablissement.hasMany(models.Revenu,{
+                onDelete:"cascade"
+           });
+       
+            Etablissement.hasMany(models.Bloc_etablissement,{
+                 onDelete:"cascade"
+            });
         
+        Etablissement.hasMany(models.Planning,{
+             onDelete:"cascade"
+        });
     };
-    Etablissement.associate=models=>{
-        Etablissement.belongsTo(models.Camion,{
-        })
         
-    };
+    
 
     return Etablissement;
 }

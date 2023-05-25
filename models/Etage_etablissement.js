@@ -17,13 +17,14 @@ module.exports=(sequelize,DataTypes)=>{
         Etage_etablissement.belongsTo(models.Bloc_etablissement,{
              onDelete:"cascade"
         })
-        
-    };
-    Etage_etablissement.associate=models=>{
         Etage_etablissement.hasMany(models.Bloc_poubelle,{
-             onDelete:"cascade"
-        });
+            onDelete:"cascade"
+       });
+       Etage_etablissement.hasMany(models.Stock_blocPoubelle,{
+        allowNull: true
+   });
     };
+   
 
     return Etage_etablissement;
 }

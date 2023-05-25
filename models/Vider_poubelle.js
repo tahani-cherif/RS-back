@@ -10,18 +10,10 @@ module.exports=(sequelize,DataTypes)=>{
         etat:{
             type :DataTypes.DOUBLE,
         allowNull:false},
-        quantite_depose_plastique:{
+        quantite_depose:{
             type :DataTypes.DOUBLE,
         allowNull:false},
-        quantite_depose_papier:{
-            type :DataTypes.DOUBLE,
-        allowNull:false},
-        quantite_depose_composte:{
-            type :DataTypes.DOUBLE,
-        allowNull:false},
-        quantite_depose_canette:{
-            type :DataTypes.DOUBLE,
-        allowNull:false},
+        
         type_poubelle:{
             type :DataTypes.STRING,
         allowNull:false},
@@ -31,17 +23,15 @@ module.exports=(sequelize,DataTypes)=>{
 
     );
     Vider_poubelle.associate=models=>{
-        Vider_poubelle.belongsTo(models.Poubelle,{
+        Vider_poubelle.belongsTo(models.Stock_poubelle,{
              onDelete:"cascade"
-        })
-        
-    };
-    Vider_poubelle.associate=models=>{
+        }),
         Vider_poubelle.belongsTo(models.Camion,{
-             onDelete:"cascade"
-        })
+            onDelete:"cascade"
+       })
         
     };
+
 
     return Vider_poubelle;
 }

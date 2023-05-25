@@ -1,4 +1,11 @@
+const Etablissement = require("../models").Etablissement;
+const Bloc_etablissement = require("../models").Bloc_etablissement;
+const Etage_etablissement = require("../models").Etage_etablissement;
+const Stock_blocPoubelle = require("../models").Stock_blocPoubelle;
 const Stock_poubelle = require("../models").Stock_poubelle;
+
+const Planning = require("../models").Planning;
+
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
 
@@ -40,8 +47,64 @@ exports.createStock_poubelle=asyncHandler(async(req,res)=>{
 // @access  Private
 exports.updateStock_poubelle =asyncHandler(async(req,res,next)=>{
   const {id}=req.params;
-    const stock_poubelle=await Stock_poubelle.update(req.body,{where:{id:id}})
-    res.status(200).json({message:true});  
+  const stockPoubelle = await Stock_poubelle.findOne({
+    where:{id:id},include: [
+        {
+          model: Stock_blocPoubelle,
+          include: [{ 
+            model: Etage_etablissement,
+            include:[{model:Bloc_etablissement,
+                include:[{model:Etablissement}]}]
+         }]
+        }
+      ]
+    
+});
+  var document={};
+if(req.body.etat){
+  document ={
+      
+    reference:req.body.reference,
+    type_poubelle:req.body.type_poubelle,
+    isAffect:req.body.isAffect,
+    StockBlocPoubelleId:req.body.StockBlocPoubelleId,
+    nom_poubelle:req.body.nom_poubelle,
+    capacite:req.body.capacite,
+    quantite_actuel:stockPoubelle.capacite*(req.body.etat/100),
+    etat:req.body.etat,
+
+
+    
+}
+} else if(req.body.quantite_actuel){
+  document ={
+      
+    reference:req.body.reference,
+    type_poubelle:req.body.type_poubelle,
+    isAffect:req.body.isAffect,
+    StockBlocPoubelleId:req.body.StockBlocPoubelleId,
+    nom_poubelle:req.body.nom_poubelle,
+    capacite:req.body.capacite,
+    quantite_actuel: req.body.quantite_actuel,
+    etat: stockPoubelle.capacite ===0?0: (100*req.body.quantite_actuel)/stockPoubelle.capacite,
+
+
+    
+}
+}
+if(req.body.etat>80){
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(15, 0, 0, 0);
+  
+  const endTime = new Date(tomorrow.getTime());
+  endTime.setHours(endTime.getHours() + 1);
+  await Planning.create({Subject:"First depot",	StartTime:tomorrow,	EndTime:endTime,	validation:false,	statut:"en cours",type_poubelle:stockPoubelle.type_poubelle,	EtablissementId:stockPoubelle.Stock_blocPoubelle.Etage_etablissement.Bloc_etablissement.Etablissement.id,	CamionId:stockPoubelle.Stock_blocPoubelle.Etage_etablissement.Bloc_etablissement.Etablissement.CamionId
+  })
+}
+    await Stock_poubelle.update(document,{where:{id:id}})
+    const newstockPoubelle = await Stock_poubelle.findByPk(id);
+    res.status(200).json({data:newstockPoubelle});  
 })
 
 

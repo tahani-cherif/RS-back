@@ -18,16 +18,16 @@ module.exports=(sequelize,DataTypes)=>{
     );
     
     
-    Dechet.associate=models=>{
-        Dechet.hasMany(models.Depot,{
-             onDelete:"cascade"
-        });
-    };
-    Dechet.associate=models=>{
-        Dechet.hasOne(models.Rating_dechet,{
-             onDelete:"cascade"
-        });
-    };
+    // Dechet.associate=models=>{
+    //     Dechet.hasMany(models.Depot,{
+    //          onDelete:"cascade"
+    //     });
+    // };
+    // Dechet.associate=models=>{
+    //     Dechet.hasOne(models.Rating_dechet,{
+    //          onDelete:"cascade"
+    //     });
+    // };
 
     return Dechet;
 }

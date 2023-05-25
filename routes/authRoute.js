@@ -7,12 +7,13 @@ const {
 const {
   signup,
   login,
+  genrateQrCode, resizeImage,uploadUserImage
   
 } = require('../services/authService');
 
 const router = express.Router();
-
-router.post('/signup', signupValidator, signup);
+router.post('/qrcode/:id', genrateQrCode);
+router.post('/signup', uploadUserImage, resizeImage,signupValidator,signup);
 router.post('/login', loginValidator, login);
 // router.post('/forgotPassword', forgotPassword);
 // router.post('/verifyResetCode', verifyPassResetCode);
