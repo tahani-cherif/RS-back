@@ -76,6 +76,7 @@ exports.getDataFromLastMonth = asyncHandler(async(req,res,next)=>{
           }
           
         },
+        group: "type_poubelle",
         
       };
     const viderPoubelle = await Vider_poubelle.findAll(query);

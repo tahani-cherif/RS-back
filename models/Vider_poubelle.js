@@ -29,6 +29,9 @@ module.exports=(sequelize,DataTypes)=>{
         Vider_poubelle.belongsTo(models.Camion,{
             onDelete:"cascade"
        })
+       Vider_poubelle.belongsTo(models.Etablissement,{
+        onDelete:"cascade"
+   })
         
     };
 

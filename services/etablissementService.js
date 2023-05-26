@@ -1,4 +1,8 @@
 const Etablissement = require("../models").Etablissement;
+const Bloc_etablissement = require("../models").Bloc_etablissement;
+const Etage_etablissement = require("../models").Etage_etablissement;
+const Stock_blocPoubelle = require("../models").Stock_blocPoubelle;
+const Stock_poubelle = require("../models").Stock_poubelle;
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
 
@@ -7,7 +11,19 @@ const ApiError=require('../utils/apiError')
 // @route   GET api/zonetravail/
 // @access  Private
 exports.getEtablissements=asyncHandler(async(req,res) => {
-    const etablissement = await Etablissement.findAll();
+    const etablissement = await Etablissement.findAll({
+      include: [
+          {
+            model: Bloc_etablissement,
+            include: [{ 
+              model: Etage_etablissement,
+              include:[{model:Stock_blocPoubelle,
+                  include:[{model:Stock_poubelle}]}]
+           }]
+          }
+        ]
+      
+  });
     res.status(200).json({results:etablissement.length,data:etablissement})
   });
 

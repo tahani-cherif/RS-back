@@ -111,6 +111,11 @@ module.exports=(sequelize,DataTypes)=>{
         Etablissement.hasMany(models.Planning,{
              onDelete:"cascade"
         });
+        Etablissement.hasMany(models.Vider_poubelle,{
+            onDelete:"cascade"
+       });
+
+        
     };
         
     

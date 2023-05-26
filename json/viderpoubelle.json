@@ -5,7 +5,7 @@
     "quantite_depose":1.5,
     "type_poubelle":"plastique",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },
 {
     "date_depot" : "2023-04-01 12:19:07",
@@ -13,7 +13,7 @@
     "quantite_depose":30.0,
     "type_poubelle":"canette",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },
 {
     "date_depot" : "2023-04-05 12:19:07",
@@ -21,7 +21,7 @@
     "quantite_depose":20.0,
     "type_poubelle":"papier",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },
 {
     "date_depot" : "2023-05-23 12:19:07",
@@ -29,7 +29,7 @@
     "quantite_depose":10.0,
     "type_poubelle":"composte",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 }
 ,{
     "date_depot" : "2023-05-23 12:19:07",
@@ -37,49 +37,49 @@
     "quantite_depose":10.0,
     "type_poubelle":"plastique",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-05-23 12:19:07",
     "etat":60.0,
     "quantite_depose":10.0,
     "type_poubelle":"canette",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-05-23 12:19:07",
     "etat":70.0,
     "quantite_depose":10.0,
     "type_poubelle":"papier",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-05-23 12:19:07",
     "etat":80.0,
     "quantite_depose":10.0,
     "type_poubelle":"composte",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-04-11 12:19:07",
     "etat":90.0,
     "quantite_depose":10.0,
     "type_poubelle":"plastique",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-05-23 12:19:07",
     "etat":100.0,
     "quantite_depose":10.0,
     "type_poubelle":"canette",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 },{
     "date_depot" : "2023-05-23 12:19:07",
     "etat":10.0,
     "quantite_depose":10.0,
     "type_poubelle":"composte",
     "StockPoubelleId":1,
-    "CamionId":1
+    "CamionId":1,"EtablissementId":1
 }
 
 
