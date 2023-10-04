@@ -1,6 +1,8 @@
 const Etage_etablissement = require("../models").Etage_etablissement;
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
+const Bloc_etablissement = require("../models").Bloc_etablissement;
+const Etablissement = require("../models").Etablissement;
 
 
 // @desc    Get all etage_etablissement
@@ -10,7 +12,22 @@ exports.getEtage_etablissements=asyncHandler(async(req,res) => {
     const etage_etablissement = await Etage_etablissement.findAll();
     res.status(200).json({results:etage_etablissement.length,data:etage_etablissement})
   });
+  exports.getEtage_etablissementsByBloc=asyncHandler(async(req,res) => {
+    const {id}=req.params; 
 
+    const etage_etablissement = await Etage_etablissement.findAll({ include: [
+      {
+        model: Bloc_etablissement,
+        include: [{ 
+          model: Etablissement}]
+       
+      }
+    ],where:{BlocEtablissementId:id}});
+    res.status(200).json({results:etage_etablissement.length,data:etage_etablissement})
+  });
+
+
+  
 // @desc    Get specific Etage_etablissement by id
 // @route   GET api/zonetravail/:id
 // @access  Private

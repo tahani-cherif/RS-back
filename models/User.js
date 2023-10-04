@@ -46,8 +46,16 @@ module.exports=(sequelize,DataTypes)=>{
               beforeCreate: async (user, options) => {
                 const hashedPassword = await bcrypt.hash(user.password, 12);
                 user.password = hashedPassword;
+                
 
               },
+              afterCreate: async (user, options) => {
+                const hashedId = await bcrypt.hash(user.id.toString(), 12);
+                user.qrCode = hashedId;
+                
+
+              },
+              
               
              
               
@@ -57,6 +65,7 @@ module.exports=(sequelize,DataTypes)=>{
     
 
     );
+
     User.associate=models=>{
         User.belongsTo(models.Camion,{
             allowNull:true

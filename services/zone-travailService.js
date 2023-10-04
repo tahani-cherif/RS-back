@@ -1,6 +1,8 @@
 const Zone_travail = require("../models").Zone_travail;
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
+const CodePostal = require("../models").CodePostal;
+const Etablissement = require("../models").Etablissement;
 
 
 // @desc    Get all zone_travail
@@ -33,6 +35,19 @@ exports.createZonetravail=asyncHandler(async(req,res)=>{
     const zone_travail=await Zone_travail.create(body)
      res.status(201).json({data:zone_travail})
    
+});
+exports.createZonetravailWithcp=asyncHandler(async(req,res)=>{
+  const body=req.body
+  const zone_travail=await Zone_travail.create(body)
+  const {code_postals}=req.body;
+  for (const code_postal of code_postals) {
+    await CodePostal.update({ZoneTravailId:zone_travail.id},{where:{	
+      code_postal	:code_postal}})
+      await Etablissement.update({ZoneTravailId:zone_travail.id},{where:{	
+        code_postal	:code_postal}})
+  }
+  res.status(201).json({data:zone_travail})
+
 });
 
 // @desc    update specified Zone_travail

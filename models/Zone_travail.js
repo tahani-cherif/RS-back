@@ -5,26 +5,23 @@ module.exports=(sequelize,DataTypes)=>{
         region:{
             type :DataTypes.STRING,
             allowNull:false},
-        code_postal:{
-            type: DataTypes.STRING,
-        allowNull: false,
-        get() {
-            return this.getDataValue('code_postal').split(';')
-        },
-        set(val) {
-           this.setDataValue('code_postal',val.join(';'));
-        },},
+
             quantite_total_collecte_plastique:{
             type :DataTypes.DOUBLE,
+            default:0,
+            
         allowNull:false},
         quantite_total_collecte_composte:{
             type :DataTypes.DOUBLE,
+            default:0,
         allowNull:false},
         quantite_total_collecte_papier:{
             type :DataTypes.DOUBLE,
+            default:0,
         allowNull:false},
         quantite_total_collecte_canette:{
             type :DataTypes.DOUBLE,
+            default:0,
         allowNull:false},
     }
     
@@ -44,7 +41,9 @@ module.exports=(sequelize,DataTypes)=>{
         Zone_travail.hasMany(models.Etablissement,{
           
         })
-        
+        Zone_travail.hasMany(models.CodePostal,{
+          
+        })
     };
     };
    

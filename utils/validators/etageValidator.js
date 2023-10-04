@@ -16,7 +16,7 @@ exports.getEtage_etablissementValidator=[
 ];
 
 exports.createEtage_etablissementValidator=[
-    check('nom_etage_etablissement').notEmpty().withMessage('nom_bloc_etablissment required').isString().withMessage('nom_bloc_etablissment must be String'),
+    check('nom_etage_etablissement').notEmpty().withMessage('nom_etage_etablissement required').isString().withMessage('nom_etage_etablissement must be String'),
     check('BlocEtablissementId').notEmpty().withMessage('BlocEtablissementId required').isNumeric().withMessage('BlocEtablissementId must be Number'),
 
     validatorMiddleware,

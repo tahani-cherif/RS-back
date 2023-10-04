@@ -1,4 +1,6 @@
 const Revenu = require("../models").Revenu;
+const Etablissement = require("../models").Etablissement;
+
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
 
@@ -7,9 +9,17 @@ const ApiError=require('../utils/apiError')
 // @route   GET api/zonetravail/
 // @access  Private
 exports.getRevenus=asyncHandler(async(req,res) => {
-    const revenu = await Revenu.findAll();
+    const revenu = await Revenu.findAll({
+      include: [
+        {
+          model: Etablissement,
+         
+        }
+      ]
+    });
     res.status(200).json({results:revenu.length,data:revenu})
   });
+
 
 // @desc    Get specific Revenu by id
 // @route   GET api/zonetravail/:id

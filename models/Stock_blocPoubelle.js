@@ -6,6 +6,9 @@ module.exports=(sequelize,DataTypes)=>{
         reference:{
             type :DataTypes.STRING,
             allowNull:false},
+            nom_bloc_poubelle:{
+                type :DataTypes.STRING,
+                allowNull:true},
         isAffect:{type :DataTypes.BOOLEAN,allowNull:false}
             
       

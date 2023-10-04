@@ -24,7 +24,6 @@ exports.createEtablissementValidator=[
     check('niveau_etablissement').notEmpty().withMessage('niveau_etablissement required').isString().withMessage('niveau_etablissement must be String'),
     check('type_etablissement').notEmpty().withMessage('type_etablissement required').isString().withMessage('type_etablissement must be String'),
     check('nbr_personnes').notEmpty().withMessage('nbr_personnes required').isNumeric().withMessage('nbr_personnes must be Number'),
-    check('url_map').notEmpty().withMessage('url_map required').isString().withMessage('url_map must be String'),
     check('longitude').notEmpty().withMessage('longitude required').isFloat().withMessage('invalid longitude'),
     check('latitude').notEmpty().withMessage('latitude required').isFloat().withMessage('invalid latitude'),
 

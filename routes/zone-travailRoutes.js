@@ -12,10 +12,11 @@ const {getZonetravail,
        createZonetravail,
         updateZonetravail,
         deleteZonetravail,
-        getZonetravails,
+        getZonetravails,createZonetravailWithcp,
     }=require('../services/zone-travailService');
 
 const router=express.Router();
+router.route('/withcodepostal').post(createZonetravailWithcp)
 
 router.route('/').get(getZonetravails)
                  .post(authService.protect,createZone_travailValidator,createZonetravail);

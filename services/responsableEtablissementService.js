@@ -52,6 +52,7 @@ const poubelleArray = poubelle.flat();
     res.status(200).json({data: poubelleArray});
   })
 
+ 
   exports.etablissementDetails = asyncHandler(async(req,res,next)=>{
     const {id}=req.params; 
 

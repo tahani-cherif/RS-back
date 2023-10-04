@@ -21,6 +21,18 @@ module.exports=(sequelize,DataTypes)=>{
             quantite_canette_menusel:{
             type :DataTypes.DOUBLE,
             allowNull:false},
+            prix_unitaire_plastique:{
+                type :DataTypes.DOUBLE,
+                allowNull:false},
+                prix_unitaire_canette:{
+                    type :DataTypes.DOUBLE,
+                    allowNull:false},
+                    prix_unitaire_composte:{
+                        type :DataTypes.DOUBLE,
+                        allowNull:false},
+                        prix_unitaire_papier:{
+                            type :DataTypes.DOUBLE,
+                            allowNull:false},
             revenu_total:{
             type :DataTypes.DOUBLE,
             allowNull:false},

@@ -15,7 +15,7 @@ module.exports=(sequelize,DataTypes)=>{
         localite:{
             type :DataTypes.STRING,
         allowNull:false},
-
+        
         code_postal:{
             type :DataTypes.INTEGER,
         allowNull:false},
@@ -37,9 +37,7 @@ module.exports=(sequelize,DataTypes)=>{
             type :DataTypes.INTEGER,
         allowNull:true},
 
-        url_map:{
-            type :DataTypes.STRING,
-        allowNull:false},
+      
 
         adresse:{
             type :DataTypes.STRING,
@@ -51,6 +49,10 @@ module.exports=(sequelize,DataTypes)=>{
         latitude:{
             type :DataTypes.DOUBLE,
         allowNull:false},
+        etablissementImg:{
+            type :DataTypes.STRING,
+            allowNull:true,
+        },
 
         quantite_dechets_plastique:{
             type :DataTypes.DOUBLE,
@@ -105,7 +107,7 @@ module.exports=(sequelize,DataTypes)=>{
            });
        
             Etablissement.hasMany(models.Bloc_etablissement,{
-                 onDelete:"cascade"
+                onDelete: 'SET NULL'
             });
         
         Etablissement.hasMany(models.Planning,{

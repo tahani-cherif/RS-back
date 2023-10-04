@@ -1,6 +1,7 @@
 const Bloc_etablissement = require("../models").Bloc_etablissement;
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
+const Etablissement = require("../models").Etablissement;
 
 
 // @desc    Get all bloc_etablissement
@@ -11,7 +12,12 @@ exports.getBloc_etablissements=asyncHandler(async(req,res) => {
   if (req.filterObj) {
     filter = req.filterObj;
   }
-    const bloc_etablissement = await Bloc_etablissement.findAll(filter);
+    const bloc_etablissement = await Bloc_etablissement.findAll({include: [
+      {
+        model: Etablissement,
+       
+      }
+    ]});
     res.status(200).json({results:bloc_etablissement.length,data:bloc_etablissement})
   });
 
@@ -36,6 +42,20 @@ exports.getBloc_etablissement = asyncHandler(async(req,res,next)=>{
   res.status(200).json({data: bloc_etablissement});
 })
 
+exports.getBloc_etablissementByEtab = asyncHandler(async(req,res,next)=>{
+  const {id}=req.params; 
+  const bloc_etablissement = await Bloc_etablissement.findAll({ include: [
+    {
+      model: Etablissement,
+     
+    }
+  ],where:{EtablissementId:id}});
+  if(!bloc_etablissement)
+  {
+    return   next(new ApiError(`Bloc_etablissement not found for this id ${id}`,404)); 
+}
+  res.status(200).json({data: bloc_etablissement});
+})
 
 // @desc    Create a new Bloc_etablissement
 // @route   POST api/zonetravail/

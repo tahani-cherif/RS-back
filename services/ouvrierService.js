@@ -62,7 +62,54 @@ const poubelleArray = poubelle.flat();
 
     res.status(200).json({data: poubelleArray});
   })
+  exports.findBlocPoubelleByEtab = asyncHandler(async(req,res,next)=>{
+    const {id}=req.params; 
+    var blocEtablisssement =[];
+    var etageEtablisssement =[];
+    var blocpoubelle =[];
+    var poubelle =[];
+    const etablissement = await Etablissement.findAll({
+        where:{CamionId:id},include: [
+            {
+              model: Bloc_etablissement,
+              include: [{ 
+                model: Etage_etablissement,
+                include:[{model:Stock_blocPoubelle,
+                    include:[{model:Stock_poubelle}]}]
+             }]
+            }
+          ]
+        
+    }
+    
+        
+);
+for (const etab of etablissement) {
 
+    blocEtablisssement.push(etab.Bloc_etablissements);
+}
+const blocEtablisssementArray = blocEtablisssement.flat();
+
+for (const bloc of blocEtablisssementArray) {
+
+    etageEtablisssement.push(bloc.Etage_etablissements);
+}
+
+const etageArray = etageEtablisssement.flat();
+
+for (const etage of etageArray) {
+  blocpoubelle.push(etage.Stock_blocPoubelles);
+}
+const blocpoubelleArray = blocpoubelle.flat();
+
+
+
+
+
+
+
+    res.status(200).json({result:blocpoubelleArray.length,data: blocpoubelleArray});
+  })
   exports.etablissementDetails = asyncHandler(async(req,res,next)=>{
     const {id}=req.params; 
 

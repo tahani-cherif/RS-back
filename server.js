@@ -14,7 +14,6 @@ app.use(express.json())
 app.use(cors());
 app.options('*', cors());
 app.use(compression());
-app.use(express.json({ limit: '20kb' }));
 app.use(express.static(path.join(__dirname, 'uploads')));
 if(process.env.NODE_ENV==='development'){
     app.use(morgan('dev'))
@@ -42,9 +41,18 @@ const responsableEtablissementRoute = require('./routes/responsableEtablissement
 const ouvrierRoute = require('./routes/ouvrierRoute')
 const viderPoubelleRoute = require('./routes/viderPoubelleRoute')
 const planningRoute = require('./routes/planningRoute')
+const dashboardRoute = require('./routes/dashboardRoute')
+const revenuRoute = require('./routes/revenuRoute')
+const codePostalRoute = require('./routes/codePostalRoute')
+
+
+
+
 
 
 app.use('/api/userImages', express.static('./uploads/users'))
+app.use('/api/etablissementImages', express.static('./uploads/etablissements'))
+
 
 app.use('/api/etablissement', etablissementRoutes)
 app.use('/api/zonetravail', zonetravailRoutes)
@@ -61,6 +69,11 @@ app.use('/api/responsable-etablissement', responsableEtablissementRoute)
 app.use('/api/ouvrier', ouvrierRoute)
 app.use('/api/viderpoubelle', viderPoubelleRoute)
 app.use('/api/planning', planningRoute)
+app.use('/api/dashboard', dashboardRoute)
+app.use('/api/revenu', revenuRoute)
+app.use('/api/codepostal', codePostalRoute)
+
+
 
 
 //static Images Folder
@@ -73,9 +86,9 @@ app.all('*',(req,res,next)=>{
 
   const port = process.env.PORT || 8000
 
-  const server =app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+  const server =app.listen(8000, () => console.log(`Example app listening on port ${8000}!`));
   db.sequelize.sync() .then(()=>{
-    app.listen (3000, () =>   process.on('unhandledRejection',(err)=>{
+    app.listen (port, () =>   process.on('unhandledRejection',(err)=>{
         console.error(`unhandledRejection Error : ${err.name} | ${err.message} `)
         server.close(()=>{
           console.error(`shutting down ...`);

@@ -40,8 +40,18 @@ exports.createCamion=asyncHandler(async(req,res)=>{
 // @access  Private
 exports.updateCamion =asyncHandler(async(req,res,next)=>{
   const {id}=req.params;
-    const camion=await Camion.update(req.body,{where:{id:id}})
-    res.status(200).json({message:true});  
+  const camionPk = await Camion.findByPk(id);
+  if (!camionPk) {
+    return next(
+      new ApiError(`No camion for this id ${id}`, 404)
+    );
+  }
+
+    await Camion.update(req.body,{where:{id:id}})
+    const updatedCamion = await Camion.findByPk(id);  
+
+    res.status(200).json({data:updatedCamion});  
+
 })
 
 
